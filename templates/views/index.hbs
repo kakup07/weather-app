@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Weather</title>
+    <link rel="icon" href="/images/weather.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    
+</head>
+<body>
+    {{>header}}
+
+    <div class="main">
+        
+        
+        <form>
+            <p>Enter the location here</p>
+            <input placeholder="Location">
+            <button>Search</button>
+        </form>    
+        <div class="weather">
+            <p class="result"></p>         
+        </div>
+    </div>
+
+    {{>footer}}
+    <script src="/js/app.js"></script>
+</body>
+</html>
