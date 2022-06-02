@@ -69,6 +69,20 @@ header button {
     font-size: 24px;
 }
 
+.main button {
+    margin-left: 10px;
+    background-color: rgb(29, 123, 223);
+    border: 0;
+    width: auto;
+    height: 22px;
+    color: white;
+}
+
+.main input {
+    border: 3px gray solid;
+    text-indent: 5px;
+}
+
 
 @media only screen and (max-width : 600px) {
     header {
