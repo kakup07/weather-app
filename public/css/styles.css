@@ -64,8 +64,8 @@ header button {
     cursor: pointer;
 }
 
-.result { 
-    margin-top: 80px;
+.weather { 
+    margin-top: 40px;
     font-size: 24px;
 }
 
@@ -74,13 +74,14 @@ header button {
     background-color: rgb(29, 123, 223);
     border: 0;
     width: auto;
-    height: 22px;
+    height: 28px;
     color: white;
 }
 
 .main input {
     border: 3px gray solid;
     text-indent: 5px;
+    height: 28px;
 }
 
 

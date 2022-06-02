@@ -9,9 +9,12 @@ const weather = (latitude,longitude={},callback) => {
         } else if(body.error){
             callback("unable to find location")
         } else {
-            const temperature = body.current.temperature;
+            // const forecastData = body.current.temperature;
             // const feelsLikeTemp = body.current.feelslike;
-            callback(undefined , temperature)
+            callback(undefined , {temperature : body.current.temperature,
+                                    feelsLike : body.current.feelslike,
+                                    humidity : body.current.humidity,
+                                    localTime : body.location.localtime})
         }
     })
 }
