@@ -38,7 +38,7 @@ app.get('/about',(req,res)=>{
 
 app.get('/help',(req,res)=>{
     res.render('help',{
-        msg: 'This little fun app is made only for learning purpose. For weather update, i have used Weatherstack API.',    
+        msg: 'This app is made only for learning purpose. For weather update, i have used Weatherstack API and for location Geolocation API.',    
         title: 'Help', 
         name : 'Rakshit Pandey'         
     })
@@ -51,13 +51,34 @@ app.get('/weather' , (req, res) => {
         })
     }
 
-    geocode(req.query.address , (error, {latitude,longitude,location}={}) => {
-        if (error){
-            return res.send({
-                weather : error
-            })
-        }
-        // console.log(data)
+    if (req.query.current === 'false') {
+        geocode(req.query.address , (error, {latitude,longitude,location}={}) => {
+            if (error){
+                return res.send({
+                    weather : error
+                })
+            }
+            // console.log(data)
+            weather(latitude,longitude,(error, forecastData) => {
+                if (error){
+                    return res.send({
+                        weather : error
+                    })
+                }
+                
+                res.send({
+                    location : location,
+                    weather : forecastData.temperature,
+                    feelsLike : forecastData.feelsLike,
+                    humidity : forecastData.humidity,
+                    localTime : forecastData.localTime,
+                    address : req.query.address
+                })
+            })    
+        })
+    } else if (req.query.current === 'true') {
+        const [ latitude, longitude ] = req.query.address.split(',')
+        console.log(req.query.address.split(','))
         weather(latitude,longitude,(error, forecastData) => {
             if (error){
                 return res.send({
@@ -66,15 +87,17 @@ app.get('/weather' , (req, res) => {
             }
             
             res.send({
-                location : location,
+                location : `<a href=https://google.com/maps?q=${latitude},${longitude} target=_blank>Location</a>`,
                 weather : forecastData.temperature,
                 feelsLike : forecastData.feelsLike,
                 humidity : forecastData.humidity,
                 localTime : forecastData.localTime,
                 address : req.query.address
             })
-        })    
-    })
+        })                 
+    }
+
+    
 
     
 })
